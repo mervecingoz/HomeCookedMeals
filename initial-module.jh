@@ -1,0 +1,65 @@
+entity Meal {
+	name String required
+}
+
+entity MealEntry {
+	name String required
+    date Instant
+    time Instant
+    quota Integer
+    remainingQuota Integer
+}
+
+entity Delivery {
+	status Status required
+}
+
+
+entity CustomerAddress {
+	addressName String required
+    adress String required
+}
+
+entity Customer {
+	firstName String
+	lastName String
+	email String
+	phoneNumber String
+}
+
+entity User {
+	firstName String
+	lastName String
+	email String
+	phoneNumber String
+    rating Integer
+}
+
+enum Status {
+    CREATED, MEAL_REDY, PICKED_UP, DELIVERED
+}
+
+
+relationship OneToMany {
+	Customer to CustomerAddress{customer}
+}
+
+relationship OneToOne {
+	Meal to MealEntry
+    User to MealEntry
+}
+
+relationship OneToOne {
+    CustomerAddress to Delivery
+    MealEntry to Delivery
+}
+
+// Set pagination options
+paginate MealEntry, Delivery with infinite-scroll
+paginate MealEntry, Delivery with pagination
+
+// Use Data Transfer Objects (DTO)
+ dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
