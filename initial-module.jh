@@ -3,9 +3,7 @@ entity Meal {
 }
 
 entity MealEntry {
-	name String required
     date Instant
-    time Instant
     quota Integer
     remainingQuota Integer
 }
@@ -27,7 +25,7 @@ entity Customer {
 	phoneNumber String
 }
 
-entity User {
+entity Merchant {
 	firstName String
 	lastName String
 	email String
@@ -46,13 +44,16 @@ relationship OneToMany {
 
 relationship OneToOne {
 	Meal to MealEntry
-    User to MealEntry
+    Merchant to MealEntry
 }
 
 relationship OneToOne {
     CustomerAddress to Delivery
     MealEntry to Delivery
 }
+
+
+
 
 // Set pagination options
 paginate MealEntry, Delivery with infinite-scroll
@@ -63,3 +64,6 @@ paginate MealEntry, Delivery with pagination
 
 // Set service options to all except few
 service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
