@@ -11,12 +11,7 @@ import { ICustomer, Customer } from '@/shared/model/customer.model';
 import CustomerService from './customer.service';
 
 const validations: any = {
-  customer: {
-    firstName: {},
-    lastName: {},
-    email: {},
-    phoneNumber: {},
-  },
+  customer: {},
 };
 
 @Component({

@@ -6,22 +6,6 @@
   "entityTableName": "merchant",
   "fields": [
     {
-      "fieldName": "firstName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "lastName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "email",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "phoneNumber",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "rating",
       "fieldType": "Integer"
     }

@@ -12,10 +12,6 @@ import MerchantService from './merchant.service';
 
 const validations: any = {
   merchant: {
-    firstName: {},
-    lastName: {},
-    email: {},
-    phoneNumber: {},
     rating: {},
   },
 };

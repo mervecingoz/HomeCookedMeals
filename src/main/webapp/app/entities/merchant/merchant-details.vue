@@ -5,30 +5,6 @@
         <h2 class="jh-entity-heading" data-cy="merchantDetailsHeading"><span>Merchant</span> {{ merchant.id }}</h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span>First Name</span>
-          </dt>
-          <dd>
-            <span>{{ merchant.firstName }}</span>
-          </dd>
-          <dt>
-            <span>Last Name</span>
-          </dt>
-          <dd>
-            <span>{{ merchant.lastName }}</span>
-          </dd>
-          <dt>
-            <span>Email</span>
-          </dt>
-          <dd>
-            <span>{{ merchant.email }}</span>
-          </dd>
-          <dt>
-            <span>Phone Number</span>
-          </dt>
-          <dd>
-            <span>{{ merchant.phoneNumber }}</span>
-          </dd>
-          <dt>
             <span>Rating</span>
           </dt>
           <dd>

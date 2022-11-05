@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new MerchantService();
-      elemDefault = new Merchant(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new Merchant(123, 0);
     });
 
     describe('Service methods', () => {
@@ -81,10 +81,6 @@ describe('Service Tests', () => {
       it('should update a Merchant', async () => {
         const returnedFromService = Object.assign(
           {
-            firstName: 'BBBBBB',
-            lastName: 'BBBBBB',
-            email: 'BBBBBB',
-            phoneNumber: 'BBBBBB',
             rating: 1,
           },
           elemDefault
@@ -112,9 +108,6 @@ describe('Service Tests', () => {
       it('should partial update a Merchant', async () => {
         const patchObject = Object.assign(
           {
-            firstName: 'BBBBBB',
-            email: 'BBBBBB',
-            phoneNumber: 'BBBBBB',
             rating: 1,
           },
           new Merchant()
@@ -143,10 +136,6 @@ describe('Service Tests', () => {
       it('should return a list of Merchant', async () => {
         const returnedFromService = Object.assign(
           {
-            firstName: 'BBBBBB',
-            lastName: 'BBBBBB',
-            email: 'BBBBBB',
-            phoneNumber: 'BBBBBB',
             rating: 1,
           },
           elemDefault

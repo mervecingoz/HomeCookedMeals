@@ -20,17 +20,9 @@ entity CustomerAddress {
 }
 
 entity Customer {
-	firstName String
-	lastName String
-	email String
-	phoneNumber String
 }
 
 entity Merchant {
-	firstName String
-	lastName String
-	email String
-	phoneNumber String
     rating Integer
 }
 

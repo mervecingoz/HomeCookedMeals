@@ -11,14 +11,6 @@ public class CustomerDTO implements Serializable {
 
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
-
-    private String email;
-
-    private String phoneNumber;
-
     private UserDTO user;
 
     public Long getId() {
@@ -27,38 +19,6 @@ public class CustomerDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public UserDTO getUser() {
@@ -95,10 +55,6 @@ public class CustomerDTO implements Serializable {
     public String toString() {
         return "CustomerDTO{" +
             "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", user=" + getUser() +
             "}";
     }

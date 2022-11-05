@@ -28,10 +28,6 @@
         <thead>
           <tr>
             <th scope="row"><span>ID</span></th>
-            <th scope="row"><span>First Name</span></th>
-            <th scope="row"><span>Last Name</span></th>
-            <th scope="row"><span>Email</span></th>
-            <th scope="row"><span>Phone Number</span></th>
             <th scope="row"><span>Rating</span></th>
             <th scope="row"><span>User</span></th>
             <th scope="row"></th>
@@ -42,10 +38,6 @@
             <td>
               <router-link :to="{ name: 'MerchantView', params: { merchantId: merchant.id } }">{{ merchant.id }}</router-link>
             </td>
-            <td>{{ merchant.firstName }}</td>
-            <td>{{ merchant.lastName }}</td>
-            <td>{{ merchant.email }}</td>
-            <td>{{ merchant.phoneNumber }}</td>
             <td>{{ merchant.rating }}</td>
             <td>
               {{ merchant.user ? merchant.user.id : '' }}

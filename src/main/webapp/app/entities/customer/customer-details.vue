@@ -5,30 +5,6 @@
         <h2 class="jh-entity-heading" data-cy="customerDetailsHeading"><span>Customer</span> {{ customer.id }}</h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span>First Name</span>
-          </dt>
-          <dd>
-            <span>{{ customer.firstName }}</span>
-          </dd>
-          <dt>
-            <span>Last Name</span>
-          </dt>
-          <dd>
-            <span>{{ customer.lastName }}</span>
-          </dd>
-          <dt>
-            <span>Email</span>
-          </dt>
-          <dd>
-            <span>{{ customer.email }}</span>
-          </dd>
-          <dt>
-            <span>Phone Number</span>
-          </dt>
-          <dd>
-            <span>{{ customer.phoneNumber }}</span>
-          </dd>
-          <dt>
             <span>User</span>
           </dt>
           <dd>

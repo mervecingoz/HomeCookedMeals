@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new CustomerService();
-      elemDefault = new Customer(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Customer(123);
     });
 
     describe('Service methods', () => {
@@ -79,15 +79,7 @@ describe('Service Tests', () => {
       });
 
       it('should update a Customer', async () => {
-        const returnedFromService = Object.assign(
-          {
-            firstName: 'BBBBBB',
-            lastName: 'BBBBBB',
-            email: 'BBBBBB',
-            phoneNumber: 'BBBBBB',
-          },
-          elemDefault
-        );
+        const returnedFromService = Object.assign({}, elemDefault);
 
         const expected = Object.assign({}, returnedFromService);
         axiosStub.put.resolves({ data: returnedFromService });
@@ -109,13 +101,7 @@ describe('Service Tests', () => {
       });
 
       it('should partial update a Customer', async () => {
-        const patchObject = Object.assign(
-          {
-            firstName: 'BBBBBB',
-            email: 'BBBBBB',
-          },
-          new Customer()
-        );
+        const patchObject = Object.assign({}, new Customer());
         const returnedFromService = Object.assign(patchObject, elemDefault);
 
         const expected = Object.assign({}, returnedFromService);
@@ -138,15 +124,7 @@ describe('Service Tests', () => {
       });
 
       it('should return a list of Customer', async () => {
-        const returnedFromService = Object.assign(
-          {
-            firstName: 'BBBBBB',
-            lastName: 'BBBBBB',
-            email: 'BBBBBB',
-            phoneNumber: 'BBBBBB',
-          },
-          elemDefault
-        );
+        const returnedFromService = Object.assign({}, elemDefault);
         const expected = Object.assign({}, returnedFromService);
         axiosStub.get.resolves([returnedFromService]);
         return service.retrieve().then(res => {

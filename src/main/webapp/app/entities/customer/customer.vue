@@ -28,10 +28,6 @@
         <thead>
           <tr>
             <th scope="row"><span>ID</span></th>
-            <th scope="row"><span>First Name</span></th>
-            <th scope="row"><span>Last Name</span></th>
-            <th scope="row"><span>Email</span></th>
-            <th scope="row"><span>Phone Number</span></th>
             <th scope="row"><span>User</span></th>
             <th scope="row"></th>
           </tr>
@@ -41,10 +37,6 @@
             <td>
               <router-link :to="{ name: 'CustomerView', params: { customerId: customer.id } }">{{ customer.id }}</router-link>
             </td>
-            <td>{{ customer.firstName }}</td>
-            <td>{{ customer.lastName }}</td>
-            <td>{{ customer.email }}</td>
-            <td>{{ customer.phoneNumber }}</td>
             <td>
               {{ customer.user ? customer.user.id : '' }}
             </td>

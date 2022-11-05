@@ -9,54 +9,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="merchant.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="merchant-firstName">First Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="firstName"
-              id="merchant-firstName"
-              data-cy="firstName"
-              :class="{ valid: !$v.merchant.firstName.$invalid, invalid: $v.merchant.firstName.$invalid }"
-              v-model="$v.merchant.firstName.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="merchant-lastName">Last Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="lastName"
-              id="merchant-lastName"
-              data-cy="lastName"
-              :class="{ valid: !$v.merchant.lastName.$invalid, invalid: $v.merchant.lastName.$invalid }"
-              v-model="$v.merchant.lastName.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="merchant-email">Email</label>
-            <input
-              type="text"
-              class="form-control"
-              name="email"
-              id="merchant-email"
-              data-cy="email"
-              :class="{ valid: !$v.merchant.email.$invalid, invalid: $v.merchant.email.$invalid }"
-              v-model="$v.merchant.email.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="merchant-phoneNumber">Phone Number</label>
-            <input
-              type="text"
-              class="form-control"
-              name="phoneNumber"
-              id="merchant-phoneNumber"
-              data-cy="phoneNumber"
-              :class="{ valid: !$v.merchant.phoneNumber.$invalid, invalid: $v.merchant.phoneNumber.$invalid }"
-              v-model="$v.merchant.phoneNumber.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" for="merchant-rating">Rating</label>
             <input
               type="number"

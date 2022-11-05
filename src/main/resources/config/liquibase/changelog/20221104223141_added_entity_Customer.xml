@@ -14,18 +14,6 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="first_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="last_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="email" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="phone_number" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_customer__user_id" />
             </column>
@@ -50,10 +38,6 @@
                   tableName="customer"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="first_name" type="string"/>
-            <column name="last_name" type="string"/>
-            <column name="email" type="string"/>
-            <column name="phone_number" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

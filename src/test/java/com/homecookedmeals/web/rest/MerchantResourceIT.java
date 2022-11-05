@@ -32,18 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class MerchantResourceIT {
 
-    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
-
-    private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
-    private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_RATING = 1;
     private static final Integer UPDATED_RATING = 2;
 
@@ -74,12 +62,7 @@ class MerchantResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Merchant createEntity(EntityManager em) {
-        Merchant merchant = new Merchant()
-            .firstName(DEFAULT_FIRST_NAME)
-            .lastName(DEFAULT_LAST_NAME)
-            .email(DEFAULT_EMAIL)
-            .phoneNumber(DEFAULT_PHONE_NUMBER)
-            .rating(DEFAULT_RATING);
+        Merchant merchant = new Merchant().rating(DEFAULT_RATING);
         return merchant;
     }
 
@@ -90,12 +73,7 @@ class MerchantResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Merchant createUpdatedEntity(EntityManager em) {
-        Merchant merchant = new Merchant()
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER)
-            .rating(UPDATED_RATING);
+        Merchant merchant = new Merchant().rating(UPDATED_RATING);
         return merchant;
     }
 
@@ -123,10 +101,6 @@ class MerchantResourceIT {
         List<Merchant> merchantList = merchantRepository.findAll();
         assertThat(merchantList).hasSize(databaseSizeBeforeCreate + 1);
         Merchant testMerchant = merchantList.get(merchantList.size() - 1);
-        assertThat(testMerchant.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
-        assertThat(testMerchant.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
-        assertThat(testMerchant.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testMerchant.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testMerchant.getRating()).isEqualTo(DEFAULT_RATING);
     }
 
@@ -166,10 +140,6 @@ class MerchantResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(merchant.getId().intValue())))
-            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
-            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING)));
     }
 
@@ -185,10 +155,6 @@ class MerchantResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(merchant.getId().intValue()))
-            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
-            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
             .andExpect(jsonPath("$.rating").value(DEFAULT_RATING));
     }
 
@@ -211,12 +177,7 @@ class MerchantResourceIT {
         Merchant updatedMerchant = merchantRepository.findById(merchant.getId()).get();
         // Disconnect from session so that the updates on updatedMerchant are not directly saved in db
         em.detach(updatedMerchant);
-        updatedMerchant
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER)
-            .rating(UPDATED_RATING);
+        updatedMerchant.rating(UPDATED_RATING);
         MerchantDTO merchantDTO = merchantMapper.toDto(updatedMerchant);
 
         restMerchantMockMvc
@@ -232,10 +193,6 @@ class MerchantResourceIT {
         List<Merchant> merchantList = merchantRepository.findAll();
         assertThat(merchantList).hasSize(databaseSizeBeforeUpdate);
         Merchant testMerchant = merchantList.get(merchantList.size() - 1);
-        assertThat(testMerchant.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testMerchant.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testMerchant.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testMerchant.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testMerchant.getRating()).isEqualTo(UPDATED_RATING);
     }
 
@@ -323,8 +280,6 @@ class MerchantResourceIT {
         Merchant partialUpdatedMerchant = new Merchant();
         partialUpdatedMerchant.setId(merchant.getId());
 
-        partialUpdatedMerchant.lastName(UPDATED_LAST_NAME).email(UPDATED_EMAIL).phoneNumber(UPDATED_PHONE_NUMBER);
-
         restMerchantMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedMerchant.getId())
@@ -338,10 +293,6 @@ class MerchantResourceIT {
         List<Merchant> merchantList = merchantRepository.findAll();
         assertThat(merchantList).hasSize(databaseSizeBeforeUpdate);
         Merchant testMerchant = merchantList.get(merchantList.size() - 1);
-        assertThat(testMerchant.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
-        assertThat(testMerchant.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testMerchant.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testMerchant.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testMerchant.getRating()).isEqualTo(DEFAULT_RATING);
     }
 
@@ -357,12 +308,7 @@ class MerchantResourceIT {
         Merchant partialUpdatedMerchant = new Merchant();
         partialUpdatedMerchant.setId(merchant.getId());
 
-        partialUpdatedMerchant
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER)
-            .rating(UPDATED_RATING);
+        partialUpdatedMerchant.rating(UPDATED_RATING);
 
         restMerchantMockMvc
             .perform(
@@ -377,10 +323,6 @@ class MerchantResourceIT {
         List<Merchant> merchantList = merchantRepository.findAll();
         assertThat(merchantList).hasSize(databaseSizeBeforeUpdate);
         Merchant testMerchant = merchantList.get(merchantList.size() - 1);
-        assertThat(testMerchant.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testMerchant.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testMerchant.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testMerchant.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testMerchant.getRating()).isEqualTo(UPDATED_RATING);
     }
 

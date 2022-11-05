@@ -4,24 +4,7 @@
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "customer",
-  "fields": [
-    {
-      "fieldName": "firstName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "lastName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "email",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "phoneNumber",
-      "fieldType": "String"
-    }
-  ],
+  "fields": [],
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "name": "Customer",

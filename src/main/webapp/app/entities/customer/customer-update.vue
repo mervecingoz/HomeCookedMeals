@@ -9,54 +9,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="customer.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="customer-firstName">First Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="firstName"
-              id="customer-firstName"
-              data-cy="firstName"
-              :class="{ valid: !$v.customer.firstName.$invalid, invalid: $v.customer.firstName.$invalid }"
-              v-model="$v.customer.firstName.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="customer-lastName">Last Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="lastName"
-              id="customer-lastName"
-              data-cy="lastName"
-              :class="{ valid: !$v.customer.lastName.$invalid, invalid: $v.customer.lastName.$invalid }"
-              v-model="$v.customer.lastName.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="customer-email">Email</label>
-            <input
-              type="text"
-              class="form-control"
-              name="email"
-              id="customer-email"
-              data-cy="email"
-              :class="{ valid: !$v.customer.email.$invalid, invalid: $v.customer.email.$invalid }"
-              v-model="$v.customer.email.$model"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="customer-phoneNumber">Phone Number</label>
-            <input
-              type="text"
-              class="form-control"
-              name="phoneNumber"
-              id="customer-phoneNumber"
-              data-cy="phoneNumber"
-              :class="{ valid: !$v.customer.phoneNumber.$invalid, invalid: $v.customer.phoneNumber.$invalid }"
-              v-model="$v.customer.phoneNumber.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" for="customer-user">User</label>
             <select class="form-control" id="customer-user" data-cy="user" name="user" v-model="customer.user">
               <option v-bind:value="null"></option>
