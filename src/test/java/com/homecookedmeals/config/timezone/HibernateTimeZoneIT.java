@@ -9,6 +9,7 @@ import com.homecookedmeals.repository.timezone.DateTimeWrapperRepository;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the ZoneId Hibernate configuration.
  */
 @IntegrationTest
+@Disabled
 class HibernateTimeZoneIT {
 
     @Autowired
