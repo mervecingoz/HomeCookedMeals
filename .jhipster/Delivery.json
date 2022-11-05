@@ -10,6 +10,11 @@
       "fieldType": "Status",
       "fieldValidateRules": ["required"],
       "fieldValues": "CREATED,MEAL_REDY,PICKED_UP,DELIVERED"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,

@@ -30,7 +30,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new DeliveryService();
-      elemDefault = new Delivery(123, Status.CREATED);
+      elemDefault = new Delivery(123, Status.CREATED, 0);
     });
 
     describe('Service methods', () => {
@@ -83,6 +83,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             status: 'BBBBBB',
+            quantity: 1,
           },
           elemDefault
         );
@@ -138,6 +139,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             status: 'BBBBBB',
+            quantity: 1,
           },
           elemDefault
         );

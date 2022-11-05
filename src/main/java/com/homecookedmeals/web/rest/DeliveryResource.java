@@ -1,8 +1,12 @@
 package com.homecookedmeals.web.rest;
 
 import com.homecookedmeals.repository.DeliveryRepository;
+import com.homecookedmeals.repository.MealEntryRepository;
 import com.homecookedmeals.service.DeliveryService;
+import com.homecookedmeals.service.MealService;
 import com.homecookedmeals.service.dto.DeliveryDTO;
+import com.homecookedmeals.service.dto.MealEntryDTO;
+import com.homecookedmeals.service.impl.MealEntryServiceImpl;
 import com.homecookedmeals.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -43,9 +47,15 @@ public class DeliveryResource {
 
     private final DeliveryRepository deliveryRepository;
 
-    public DeliveryResource(DeliveryService deliveryService, DeliveryRepository deliveryRepository) {
+    private final MealEntryServiceImpl mealEntryService;
+
+    private final MealEntryRepository mealEntryRepository;
+
+    public DeliveryResource(DeliveryService deliveryService, DeliveryRepository deliveryRepository,MealEntryServiceImpl mealEntryService,MealEntryRepository mealEntryRepository) {
         this.deliveryService = deliveryService;
         this.deliveryRepository = deliveryRepository;
+        this.mealEntryService = mealEntryService;
+        this.mealEntryRepository = mealEntryRepository;
     }
 
     /**
@@ -57,10 +67,18 @@ public class DeliveryResource {
      */
     @PostMapping("/deliveries")
     public ResponseEntity<DeliveryDTO> createDelivery(@Valid @RequestBody DeliveryDTO deliveryDTO) throws URISyntaxException {
+
         log.debug("REST request to save Delivery : {}", deliveryDTO);
         if (deliveryDTO.getId() != null) {
             throw new BadRequestAlertException("A new delivery cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if(deliveryDTO.getQuantity()>deliveryDTO.getMealEntry().getRemainingQuota()){
+            throw new BadRequestAlertException("No meal in the stock",ENTITY_NAME,"no mean in the stock");
+        }
+        MealEntryDTO  mealEntryDTO = deliveryDTO.getMealEntry();
+        mealEntryDTO.setRemainingQuota(mealEntryDTO.getQuota()-deliveryDTO.getQuantity());
+        mealEntryService.save(mealEntryDTO);
+
         DeliveryDTO result = deliveryService.save(deliveryDTO);
         return ResponseEntity
             .created(new URI("/api/deliveries/" + result.getId()))

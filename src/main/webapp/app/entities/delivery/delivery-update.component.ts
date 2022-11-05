@@ -1,6 +1,6 @@
 import { Component, Vue, Inject } from 'vue-property-decorator';
 
-import { required } from 'vuelidate/lib/validators';
+import { required, numeric } from 'vuelidate/lib/validators';
 
 import AlertService from '@/shared/alert/alert.service';
 
@@ -18,6 +18,10 @@ const validations: any = {
   delivery: {
     status: {
       required,
+    },
+    quantity: {
+      required,
+      numeric,
     },
   },
 };

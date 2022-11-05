@@ -26,6 +26,10 @@ public class Delivery implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
+    @NotNull
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "deliveries", "customer" }, allowSetters = true)
     private CustomerAddress customerAddress;
@@ -60,6 +64,19 @@ public class Delivery implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    public Delivery quantity(Integer quantity) {
+        this.setQuantity(quantity);
+        return this;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public CustomerAddress getCustomerAddress() {
@@ -113,6 +130,7 @@ public class Delivery implements Serializable {
         return "Delivery{" +
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
+            ", quantity=" + getQuantity() +
             "}";
     }
 }

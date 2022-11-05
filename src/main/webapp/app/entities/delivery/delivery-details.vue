@@ -11,6 +11,12 @@
             <span>{{ delivery.status }}</span>
           </dd>
           <dt>
+            <span>Quantity</span>
+          </dt>
+          <dd>
+            <span>{{ delivery.quantity }}</span>
+          </dd>
+          <dt>
             <span>Customer Address</span>
           </dt>
           <dd>

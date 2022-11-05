@@ -26,6 +26,23 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" for="delivery-quantity">Quantity</label>
+            <input
+              type="number"
+              class="form-control"
+              name="quantity"
+              id="delivery-quantity"
+              data-cy="quantity"
+              :class="{ valid: !$v.delivery.quantity.$invalid, invalid: $v.delivery.quantity.$invalid }"
+              v-model.number="$v.delivery.quantity.$model"
+              required
+            />
+            <div v-if="$v.delivery.quantity.$anyDirty && $v.delivery.quantity.$invalid">
+              <small class="form-text text-danger" v-if="!$v.delivery.quantity.required"> This field is required. </small>
+              <small class="form-text text-danger" v-if="!$v.delivery.quantity.numeric"> This field should be a number. </small>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" for="delivery-customerAddress">Customer Address</label>
             <select
               class="form-control"

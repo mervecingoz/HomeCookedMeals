@@ -36,6 +36,9 @@ class DeliveryResourceIT {
     private static final Status DEFAULT_STATUS = Status.CREATED;
     private static final Status UPDATED_STATUS = Status.MEAL_REDY;
 
+    private static final Integer DEFAULT_QUANTITY = 1;
+    private static final Integer UPDATED_QUANTITY = 2;
+
     private static final String ENTITY_API_URL = "/api/deliveries";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -63,7 +66,7 @@ class DeliveryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Delivery createEntity(EntityManager em) {
-        Delivery delivery = new Delivery().status(DEFAULT_STATUS);
+        Delivery delivery = new Delivery().status(DEFAULT_STATUS).quantity(DEFAULT_QUANTITY);
         return delivery;
     }
 
@@ -74,7 +77,7 @@ class DeliveryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Delivery createUpdatedEntity(EntityManager em) {
-        Delivery delivery = new Delivery().status(UPDATED_STATUS);
+        Delivery delivery = new Delivery().status(UPDATED_STATUS).quantity(UPDATED_QUANTITY);
         return delivery;
     }
 
@@ -103,6 +106,7 @@ class DeliveryResourceIT {
         assertThat(deliveryList).hasSize(databaseSizeBeforeCreate + 1);
         Delivery testDelivery = deliveryList.get(deliveryList.size() - 1);
         assertThat(testDelivery.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testDelivery.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
     }
 
     @Test
@@ -154,6 +158,29 @@ class DeliveryResourceIT {
 
     @Test
     @Transactional
+    void checkQuantityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = deliveryRepository.findAll().size();
+        // set the field null
+        delivery.setQuantity(null);
+
+        // Create the Delivery, which fails.
+        DeliveryDTO deliveryDTO = deliveryMapper.toDto(delivery);
+
+        restDeliveryMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .with(csrf())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(deliveryDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Delivery> deliveryList = deliveryRepository.findAll();
+        assertThat(deliveryList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllDeliveries() throws Exception {
         // Initialize the database
         deliveryRepository.saveAndFlush(delivery);
@@ -164,7 +191,8 @@ class DeliveryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(delivery.getId().intValue())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)));
     }
 
     @Test
@@ -179,7 +207,8 @@ class DeliveryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(delivery.getId().intValue()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY));
     }
 
     @Test
@@ -201,7 +230,7 @@ class DeliveryResourceIT {
         Delivery updatedDelivery = deliveryRepository.findById(delivery.getId()).get();
         // Disconnect from session so that the updates on updatedDelivery are not directly saved in db
         em.detach(updatedDelivery);
-        updatedDelivery.status(UPDATED_STATUS);
+        updatedDelivery.status(UPDATED_STATUS).quantity(UPDATED_QUANTITY);
         DeliveryDTO deliveryDTO = deliveryMapper.toDto(updatedDelivery);
 
         restDeliveryMockMvc
@@ -218,6 +247,7 @@ class DeliveryResourceIT {
         assertThat(deliveryList).hasSize(databaseSizeBeforeUpdate);
         Delivery testDelivery = deliveryList.get(deliveryList.size() - 1);
         assertThat(testDelivery.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testDelivery.getQuantity()).isEqualTo(UPDATED_QUANTITY);
     }
 
     @Test
@@ -320,6 +350,7 @@ class DeliveryResourceIT {
         assertThat(deliveryList).hasSize(databaseSizeBeforeUpdate);
         Delivery testDelivery = deliveryList.get(deliveryList.size() - 1);
         assertThat(testDelivery.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testDelivery.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
     }
 
     @Test
@@ -334,7 +365,7 @@ class DeliveryResourceIT {
         Delivery partialUpdatedDelivery = new Delivery();
         partialUpdatedDelivery.setId(delivery.getId());
 
-        partialUpdatedDelivery.status(UPDATED_STATUS);
+        partialUpdatedDelivery.status(UPDATED_STATUS).quantity(UPDATED_QUANTITY);
 
         restDeliveryMockMvc
             .perform(
@@ -350,6 +381,7 @@ class DeliveryResourceIT {
         assertThat(deliveryList).hasSize(databaseSizeBeforeUpdate);
         Delivery testDelivery = deliveryList.get(deliveryList.size() - 1);
         assertThat(testDelivery.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testDelivery.getQuantity()).isEqualTo(UPDATED_QUANTITY);
     }
 
     @Test

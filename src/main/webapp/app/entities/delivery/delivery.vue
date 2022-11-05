@@ -34,6 +34,10 @@
               <span>Status</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'status'"></jhi-sort-indicator>
             </th>
+            <th scope="row" v-on:click="changeOrder('quantity')">
+              <span>Quantity</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'quantity'"></jhi-sort-indicator>
+            </th>
             <th scope="row" v-on:click="changeOrder('customerAddress.id')">
               <span>Customer Address</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'customerAddress.id'"></jhi-sort-indicator>
@@ -51,6 +55,7 @@
               <router-link :to="{ name: 'DeliveryView', params: { deliveryId: delivery.id } }">{{ delivery.id }}</router-link>
             </td>
             <td>{{ delivery.status }}</td>
+            <td>{{ delivery.quantity }}</td>
             <td>
               <div v-if="delivery.customerAddress">
                 <router-link :to="{ name: 'CustomerAddressView', params: { customerAddressId: delivery.customerAddress.id } }">{{

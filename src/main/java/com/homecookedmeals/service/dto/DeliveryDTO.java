@@ -16,6 +16,9 @@ public class DeliveryDTO implements Serializable {
     @NotNull
     private Status status;
 
+    @NotNull
+    private Integer quantity;
+
     private CustomerAddressDTO customerAddress;
 
     private MealEntryDTO mealEntry;
@@ -34,6 +37,14 @@ public class DeliveryDTO implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public CustomerAddressDTO getCustomerAddress() {
@@ -79,6 +90,7 @@ public class DeliveryDTO implements Serializable {
         return "DeliveryDTO{" +
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
+            ", quantity=" + getQuantity() +
             ", customerAddress=" + getCustomerAddress() +
             ", mealEntry=" + getMealEntry() +
             "}";

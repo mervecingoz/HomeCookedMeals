@@ -10,6 +10,7 @@ entity MealEntry {
 
 entity Delivery {
 	status Status required
+    quantity Integer required
 }
 
 
