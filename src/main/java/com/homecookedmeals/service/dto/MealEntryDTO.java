@@ -18,9 +18,9 @@ public class MealEntryDTO implements Serializable {
 
     private Integer remainingQuota;
 
-    private MealDTO meal;
-
     private MerchantDTO merchant;
+
+    private MealDTO meal;
 
     public Long getId() {
         return id;
@@ -54,20 +54,20 @@ public class MealEntryDTO implements Serializable {
         this.remainingQuota = remainingQuota;
     }
 
-    public MealDTO getMeal() {
-        return meal;
-    }
-
-    public void setMeal(MealDTO meal) {
-        this.meal = meal;
-    }
-
     public MerchantDTO getMerchant() {
         return merchant;
     }
 
     public void setMerchant(MerchantDTO merchant) {
         this.merchant = merchant;
+    }
+
+    public MealDTO getMeal() {
+        return meal;
+    }
+
+    public void setMeal(MealDTO meal) {
+        this.meal = meal;
     }
 
     @Override
@@ -99,8 +99,8 @@ public class MealEntryDTO implements Serializable {
             ", date='" + getDate() + "'" +
             ", quota=" + getQuota() +
             ", remainingQuota=" + getRemainingQuota() +
-            ", meal=" + getMeal() +
             ", merchant=" + getMerchant() +
+            ", meal=" + getMeal() +
             "}";
     }
 }

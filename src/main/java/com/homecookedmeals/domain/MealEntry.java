@@ -31,17 +31,17 @@ public class MealEntry implements Serializable {
     @Column(name = "remaining_quota")
     private Integer remainingQuota;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Meal meal;
-
     @OneToMany(mappedBy = "mealEntry")
     @JsonIgnoreProperties(value = { "customerAddress", "mealEntry" }, allowSetters = true)
     private Set<Delivery> deliveries = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "mealEntries" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "mealEntries" }, allowSetters = true)
     private Merchant merchant;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "mealEntries" }, allowSetters = true)
+    private Meal meal;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -97,19 +97,6 @@ public class MealEntry implements Serializable {
         this.remainingQuota = remainingQuota;
     }
 
-    public Meal getMeal() {
-        return this.meal;
-    }
-
-    public void setMeal(Meal meal) {
-        this.meal = meal;
-    }
-
-    public MealEntry meal(Meal meal) {
-        this.setMeal(meal);
-        return this;
-    }
-
     public Set<Delivery> getDeliveries() {
         return this.deliveries;
     }
@@ -151,6 +138,19 @@ public class MealEntry implements Serializable {
 
     public MealEntry merchant(Merchant merchant) {
         this.setMerchant(merchant);
+        return this;
+    }
+
+    public Meal getMeal() {
+        return this.meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
+    }
+
+    public MealEntry meal(Meal meal) {
+        this.setMeal(meal);
         return this;
     }
 

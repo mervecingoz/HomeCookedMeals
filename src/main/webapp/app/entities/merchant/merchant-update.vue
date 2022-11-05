@@ -68,6 +68,19 @@
               v-model.number="$v.merchant.rating.$model"
             />
           </div>
+          <div class="form-group">
+            <label class="form-control-label" for="merchant-user">User</label>
+            <select class="form-control" id="merchant-user" data-cy="user" name="user" v-model="merchant.user">
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="merchant.user && userOption.id === merchant.user.id ? merchant.user : userOption"
+                v-for="userOption in users"
+                :key="userOption.id"
+              >
+                {{ userOption.id }}
+              </option>
+            </select>
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

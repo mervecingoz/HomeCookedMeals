@@ -9,6 +9,8 @@ import CustomerUpdateComponent from '@/entities/customer/customer-update.vue';
 import CustomerClass from '@/entities/customer/customer-update.component';
 import CustomerService from '@/entities/customer/customer.service';
 
+import UserService from '@/entities/user/user.service';
+
 import CustomerAddressService from '@/entities/customer-address/customer-address.service';
 import AlertService from '@/shared/alert/alert.service';
 
@@ -41,6 +43,8 @@ describe('Component Tests', () => {
         provide: {
           customerService: () => customerServiceStub,
           alertService: () => new AlertService(),
+
+          userService: () => new UserService(),
 
           customerAddressService: () =>
             sinon.createStubInstance<CustomerAddressService>(CustomerAddressService, {

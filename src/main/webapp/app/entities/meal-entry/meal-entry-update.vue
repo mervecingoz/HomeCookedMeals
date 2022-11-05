@@ -48,19 +48,6 @@
             />
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="meal-entry-meal">Meal</label>
-            <select class="form-control" id="meal-entry-meal" data-cy="meal" name="meal" v-model="mealEntry.meal">
-              <option v-bind:value="null"></option>
-              <option
-                v-bind:value="mealEntry.meal && mealOption.id === mealEntry.meal.id ? mealEntry.meal : mealOption"
-                v-for="mealOption in meals"
-                :key="mealOption.id"
-              >
-                {{ mealOption.id }}
-              </option>
-            </select>
-          </div>
-          <div class="form-group">
             <label class="form-control-label" for="meal-entry-merchant">Merchant</label>
             <select class="form-control" id="meal-entry-merchant" data-cy="merchant" name="merchant" v-model="mealEntry.merchant">
               <option v-bind:value="null"></option>
@@ -70,6 +57,19 @@
                 :key="merchantOption.id"
               >
                 {{ merchantOption.id }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="meal-entry-meal">Meal</label>
+            <select class="form-control" id="meal-entry-meal" data-cy="meal" name="meal" v-model="mealEntry.meal">
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="mealEntry.meal && mealOption.id === mealEntry.meal.id ? mealEntry.meal : mealOption"
+                v-for="mealOption in meals"
+                :key="mealOption.id"
+              >
+                {{ mealOption.id }}
               </option>
             </select>
           </div>

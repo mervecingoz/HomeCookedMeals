@@ -5,14 +5,14 @@ import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 
 import AlertService from '@/shared/alert/alert.service';
 
-import MealService from '@/entities/meal/meal.service';
-import { IMeal } from '@/shared/model/meal.model';
-
 import DeliveryService from '@/entities/delivery/delivery.service';
 import { IDelivery } from '@/shared/model/delivery.model';
 
 import MerchantService from '@/entities/merchant/merchant.service';
 import { IMerchant } from '@/shared/model/merchant.model';
+
+import MealService from '@/entities/meal/meal.service';
+import { IMeal } from '@/shared/model/meal.model';
 
 import { IMealEntry, MealEntry } from '@/shared/model/meal-entry.model';
 import MealEntryService from './meal-entry.service';
@@ -34,10 +34,6 @@ export default class MealEntryUpdate extends Vue {
 
   public mealEntry: IMealEntry = new MealEntry();
 
-  @Inject('mealService') private mealService: () => MealService;
-
-  public meals: IMeal[] = [];
-
   @Inject('deliveryService') private deliveryService: () => DeliveryService;
 
   public deliveries: IDelivery[] = [];
@@ -45,6 +41,10 @@ export default class MealEntryUpdate extends Vue {
   @Inject('merchantService') private merchantService: () => MerchantService;
 
   public merchants: IMerchant[] = [];
+
+  @Inject('mealService') private mealService: () => MealService;
+
+  public meals: IMeal[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -150,11 +150,6 @@ export default class MealEntryUpdate extends Vue {
   }
 
   public initRelationships(): void {
-    this.mealService()
-      .retrieve()
-      .then(res => {
-        this.meals = res.data;
-      });
     this.deliveryService()
       .retrieve()
       .then(res => {
@@ -164,6 +159,11 @@ export default class MealEntryUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.merchants = res.data;
+      });
+    this.mealService()
+      .retrieve()
+      .then(res => {
+        this.meals = res.data;
       });
   }
 }

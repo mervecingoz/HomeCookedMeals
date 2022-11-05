@@ -2,6 +2,8 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 
 import AlertService from '@/shared/alert/alert.service';
 
+import UserService from '@/entities/user/user.service';
+
 import MealEntryService from '@/entities/meal-entry/meal-entry.service';
 import { IMealEntry } from '@/shared/model/meal-entry.model';
 
@@ -26,6 +28,10 @@ export default class MerchantUpdate extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
 
   public merchant: IMerchant = new Merchant();
+
+  @Inject('userService') private userService: () => UserService;
+
+  public users: Array<any> = [];
 
   @Inject('mealEntryService') private mealEntryService: () => MealEntryService;
 
@@ -111,6 +117,11 @@ export default class MerchantUpdate extends Vue {
   }
 
   public initRelationships(): void {
+    this.userService()
+      .retrieve()
+      .then(res => {
+        this.users = res.data;
+      });
     this.mealEntryService()
       .retrieve()
       .then(res => {

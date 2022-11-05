@@ -11,18 +11,18 @@
     <property name="datetimeType" value="datetime(6)" dbms="mysql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223137_added_entity_Meal.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223138_added_entity_MealEntry.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223139_added_entity_Delivery.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223140_added_entity_CustomerAddress.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223141_added_entity_Customer.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223142_added_entity_Merchant.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20221104223137_added_entity_constraints_Meal.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223138_added_entity_constraints_MealEntry.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223140_added_entity_constraints_CustomerAddress.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223142_added_entity_constraints_Merchant.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20221104223139_added_entity_constraints_Delivery.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+       <include file="config/liquibase/changelog/20221104223137_added_entity_Meal.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223138_added_entity_MealEntry.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223139_added_entity_Delivery.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223140_added_entity_CustomerAddress.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223141_added_entity_Customer.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223142_added_entity_Merchant.xml" relativeToChangelogFile="false"/>
+       <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+       <include file="config/liquibase/changelog/20221104223138_added_entity_constraints_MealEntry.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223139_added_entity_constraints_Delivery.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223140_added_entity_constraints_CustomerAddress.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223141_added_entity_constraints_Customer.xml" relativeToChangelogFile="false"/>
+       <include file="config/liquibase/changelog/20221104223142_added_entity_constraints_Merchant.xml" relativeToChangelogFile="false"/>
+       <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

@@ -29,10 +29,10 @@
             <span>{{ customer.phoneNumber }}</span>
           </dd>
           <dt>
-            <span>Nick Name</span>
+            <span>User</span>
           </dt>
           <dd>
-            <span>{{ customer.nickName }}</span>
+            {{ customer.user ? customer.user.id : '' }}
           </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

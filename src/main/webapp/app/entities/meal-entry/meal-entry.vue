@@ -41,13 +41,13 @@
               <span>Remaining Quota</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'remainingQuota'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('meal.id')">
-              <span>Meal</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'meal.id'"></jhi-sort-indicator>
-            </th>
             <th scope="row" v-on:click="changeOrder('merchant.id')">
               <span>Merchant</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'merchant.id'"></jhi-sort-indicator>
+            </th>
+            <th scope="row" v-on:click="changeOrder('meal.id')">
+              <span>Meal</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'meal.id'"></jhi-sort-indicator>
             </th>
             <th scope="row"></th>
           </tr>
@@ -61,15 +61,15 @@
             <td>{{ mealEntry.quota }}</td>
             <td>{{ mealEntry.remainingQuota }}</td>
             <td>
-              <div v-if="mealEntry.meal">
-                <router-link :to="{ name: 'MealView', params: { mealId: mealEntry.meal.id } }">{{ mealEntry.meal.id }}</router-link>
-              </div>
-            </td>
-            <td>
               <div v-if="mealEntry.merchant">
                 <router-link :to="{ name: 'MerchantView', params: { merchantId: mealEntry.merchant.id } }">{{
                   mealEntry.merchant.id
                 }}</router-link>
+              </div>
+            </td>
+            <td>
+              <div v-if="mealEntry.meal">
+                <router-link :to="{ name: 'MealView', params: { mealId: mealEntry.meal.id } }">{{ mealEntry.meal.id }}</router-link>
               </div>
             </td>
             <td class="text-right">

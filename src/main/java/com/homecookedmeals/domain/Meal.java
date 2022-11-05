@@ -1,6 +1,9 @@
 package com.homecookedmeals.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -22,6 +25,10 @@ public class Meal implements Serializable {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "meal")
+    @JsonIgnoreProperties(value = { "deliveries", "merchant", "meal" }, allowSetters = true)
+    private Set<MealEntry> mealEntries = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -49,6 +56,37 @@ public class Meal implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<MealEntry> getMealEntries() {
+        return this.mealEntries;
+    }
+
+    public void setMealEntries(Set<MealEntry> mealEntries) {
+        if (this.mealEntries != null) {
+            this.mealEntries.forEach(i -> i.setMeal(null));
+        }
+        if (mealEntries != null) {
+            mealEntries.forEach(i -> i.setMeal(this));
+        }
+        this.mealEntries = mealEntries;
+    }
+
+    public Meal mealEntries(Set<MealEntry> mealEntries) {
+        this.setMealEntries(mealEntries);
+        return this;
+    }
+
+    public Meal addMealEntry(MealEntry mealEntry) {
+        this.mealEntries.add(mealEntry);
+        mealEntry.setMeal(this);
+        return this;
+    }
+
+    public Meal removeMealEntry(MealEntry mealEntry) {
+        this.mealEntries.remove(mealEntry);
+        mealEntry.setMeal(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -31,7 +31,7 @@ public class Delivery implements Serializable {
     private CustomerAddress customerAddress;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "meal", "deliveries", "merchant" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "deliveries", "merchant", "meal" }, allowSetters = true)
     private MealEntry mealEntry;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

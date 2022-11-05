@@ -4,6 +4,9 @@ import { required } from 'vuelidate/lib/validators';
 
 import AlertService from '@/shared/alert/alert.service';
 
+import MealEntryService from '@/entities/meal-entry/meal-entry.service';
+import { IMealEntry } from '@/shared/model/meal-entry.model';
+
 import { IMeal, Meal } from '@/shared/model/meal.model';
 import MealService from './meal.service';
 
@@ -23,6 +26,10 @@ export default class MealUpdate extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
 
   public meal: IMeal = new Meal();
+
+  @Inject('mealEntryService') private mealEntryService: () => MealEntryService;
+
+  public mealEntries: IMealEntry[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -31,6 +38,7 @@ export default class MealUpdate extends Vue {
       if (to.params.mealId) {
         vm.retrieveMeal(to.params.mealId);
       }
+      vm.initRelationships();
     });
   }
 
@@ -102,5 +110,11 @@ export default class MealUpdate extends Vue {
     this.$router.go(-1);
   }
 
-  public initRelationships(): void {}
+  public initRelationships(): void {
+    this.mealEntryService()
+      .retrieve()
+      .then(res => {
+        this.mealEntries = res.data;
+      });
+  }
 }

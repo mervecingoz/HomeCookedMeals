@@ -36,8 +36,12 @@ public class Merchant implements Serializable {
     @Column(name = "rating")
     private Integer rating;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
+
     @OneToMany(mappedBy = "merchant")
-    @JsonIgnoreProperties(value = { "meal", "deliveries", "merchant" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "deliveries", "merchant", "meal" }, allowSetters = true)
     private Set<MealEntry> mealEntries = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -118,6 +122,19 @@ public class Merchant implements Serializable {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Merchant user(User user) {
+        this.setUser(user);
+        return this;
     }
 
     public Set<MealEntry> getMealEntries() {

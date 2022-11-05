@@ -25,12 +25,6 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "meal",
-      "ownerSide": true,
-      "relationshipName": "meal",
-      "relationshipType": "one-to-one"
-    },
-    {
       "otherEntityName": "delivery",
       "otherEntityRelationshipName": "mealEntry",
       "relationshipName": "delivery",
@@ -40,6 +34,12 @@
       "otherEntityName": "merchant",
       "otherEntityRelationshipName": "mealEntry",
       "relationshipName": "merchant",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "meal",
+      "otherEntityRelationshipName": "mealEntry",
+      "relationshipName": "meal",
       "relationshipType": "many-to-one"
     }
   ],

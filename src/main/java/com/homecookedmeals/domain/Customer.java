@@ -33,8 +33,9 @@ public class Customer implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "nick_name")
-    private String nickName;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnoreProperties(value = { "deliveries", "customer" }, allowSetters = true)
@@ -107,17 +108,17 @@ public class Customer implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getNickName() {
-        return this.nickName;
+    public User getUser() {
+        return this.user;
     }
 
-    public Customer nickName(String nickName) {
-        this.setNickName(nickName);
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Customer user(User user) {
+        this.setUser(user);
         return this;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public Set<CustomerAddress> getCustomerAddresses() {
@@ -179,7 +180,6 @@ public class Customer implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", nickName='" + getNickName() + "'" +
             "}";
     }
 }

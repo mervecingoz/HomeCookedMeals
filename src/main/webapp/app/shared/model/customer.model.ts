@@ -1,3 +1,4 @@
+import { IUser } from '@/shared/model/user.model';
 import { ICustomerAddress } from '@/shared/model/customer-address.model';
 
 export interface ICustomer {
@@ -6,7 +7,7 @@ export interface ICustomer {
   lastName?: string | null;
   email?: string | null;
   phoneNumber?: string | null;
-  nickName?: string | null;
+  user?: IUser | null;
   customerAddresses?: ICustomerAddress[] | null;
 }
 
@@ -17,7 +18,7 @@ export class Customer implements ICustomer {
     public lastName?: string | null,
     public email?: string | null,
     public phoneNumber?: string | null,
-    public nickName?: string | null,
+    public user?: IUser | null,
     public customerAddresses?: ICustomerAddress[] | null
   ) {}
 }

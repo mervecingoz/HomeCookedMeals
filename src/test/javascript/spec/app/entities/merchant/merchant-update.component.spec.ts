@@ -9,6 +9,8 @@ import MerchantUpdateComponent from '@/entities/merchant/merchant-update.vue';
 import MerchantClass from '@/entities/merchant/merchant-update.component';
 import MerchantService from '@/entities/merchant/merchant.service';
 
+import UserService from '@/entities/user/user.service';
+
 import MealEntryService from '@/entities/meal-entry/meal-entry.service';
 import AlertService from '@/shared/alert/alert.service';
 
@@ -41,6 +43,8 @@ describe('Component Tests', () => {
         provide: {
           merchantService: () => merchantServiceStub,
           alertService: () => new AlertService(),
+
+          userService: () => new UserService(),
 
           mealEntryService: () =>
             sinon.createStubInstance<MealEntryService>(MealEntryService, {

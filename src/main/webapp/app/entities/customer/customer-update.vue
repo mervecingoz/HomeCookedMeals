@@ -57,16 +57,17 @@
             />
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="customer-nickName">Nick Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="nickName"
-              id="customer-nickName"
-              data-cy="nickName"
-              :class="{ valid: !$v.customer.nickName.$invalid, invalid: $v.customer.nickName.$invalid }"
-              v-model="$v.customer.nickName.$model"
-            />
+            <label class="form-control-label" for="customer-user">User</label>
+            <select class="form-control" id="customer-user" data-cy="user" name="user" v-model="customer.user">
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="customer.user && userOption.id === customer.user.id ? customer.user : userOption"
+                v-for="userOption in users"
+                :key="userOption.id"
+              >
+                {{ userOption.id }}
+              </option>
+            </select>
           </div>
         </div>
         <div>

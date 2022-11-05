@@ -32,7 +32,7 @@
             <th scope="row"><span>Last Name</span></th>
             <th scope="row"><span>Email</span></th>
             <th scope="row"><span>Phone Number</span></th>
-            <th scope="row"><span>Nick Name</span></th>
+            <th scope="row"><span>User</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -45,7 +45,9 @@
             <td>{{ customer.lastName }}</td>
             <td>{{ customer.email }}</td>
             <td>{{ customer.phoneNumber }}</td>
-            <td>{{ customer.nickName }}</td>
+            <td>
+              {{ customer.user ? customer.user.id : '' }}
+            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'CustomerView', params: { customerId: customer.id } }" custom v-slot="{ navigate }">

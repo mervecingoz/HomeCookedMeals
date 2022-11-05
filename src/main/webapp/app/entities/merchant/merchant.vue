@@ -33,6 +33,7 @@
             <th scope="row"><span>Email</span></th>
             <th scope="row"><span>Phone Number</span></th>
             <th scope="row"><span>Rating</span></th>
+            <th scope="row"><span>User</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -46,6 +47,9 @@
             <td>{{ merchant.email }}</td>
             <td>{{ merchant.phoneNumber }}</td>
             <td>{{ merchant.rating }}</td>
+            <td>
+              {{ merchant.user ? merchant.user.id : '' }}
+            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'MerchantView', params: { merchantId: merchant.id } }" custom v-slot="{ navigate }">

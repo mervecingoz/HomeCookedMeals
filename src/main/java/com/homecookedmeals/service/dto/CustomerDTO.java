@@ -19,7 +19,7 @@ public class CustomerDTO implements Serializable {
 
     private String phoneNumber;
 
-    private String nickName;
+    private UserDTO user;
 
     public Long getId() {
         return id;
@@ -61,12 +61,12 @@ public class CustomerDTO implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getNickName() {
-        return nickName;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class CustomerDTO implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", nickName='" + getNickName() + "'" +
+            ", user=" + getUser() +
             "}";
     }
 }

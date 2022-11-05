@@ -23,14 +23,6 @@
             <span>{{ mealEntry.remainingQuota }}</span>
           </dd>
           <dt>
-            <span>Meal</span>
-          </dt>
-          <dd>
-            <div v-if="mealEntry.meal">
-              <router-link :to="{ name: 'MealView', params: { mealId: mealEntry.meal.id } }">{{ mealEntry.meal.id }}</router-link>
-            </div>
-          </dd>
-          <dt>
             <span>Merchant</span>
           </dt>
           <dd>
@@ -38,6 +30,14 @@
               <router-link :to="{ name: 'MerchantView', params: { merchantId: mealEntry.merchant.id } }">{{
                 mealEntry.merchant.id
               }}</router-link>
+            </div>
+          </dd>
+          <dt>
+            <span>Meal</span>
+          </dt>
+          <dd>
+            <div v-if="mealEntry.meal">
+              <router-link :to="{ name: 'MealView', params: { mealId: mealEntry.meal.id } }">{{ mealEntry.meal.id }}</router-link>
             </div>
           </dd>
         </dl>

@@ -2,6 +2,8 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 
 import AlertService from '@/shared/alert/alert.service';
 
+import UserService from '@/entities/user/user.service';
+
 import CustomerAddressService from '@/entities/customer-address/customer-address.service';
 import { ICustomerAddress } from '@/shared/model/customer-address.model';
 
@@ -14,7 +16,6 @@ const validations: any = {
     lastName: {},
     email: {},
     phoneNumber: {},
-    nickName: {},
   },
 };
 
@@ -26,6 +27,10 @@ export default class CustomerUpdate extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
 
   public customer: ICustomer = new Customer();
+
+  @Inject('userService') private userService: () => UserService;
+
+  public users: Array<any> = [];
 
   @Inject('customerAddressService') private customerAddressService: () => CustomerAddressService;
 
@@ -111,6 +116,11 @@ export default class CustomerUpdate extends Vue {
   }
 
   public initRelationships(): void {
+    this.userService()
+      .retrieve()
+      .then(res => {
+        this.users = res.data;
+      });
     this.customerAddressService()
       .retrieve()
       .then(res => {

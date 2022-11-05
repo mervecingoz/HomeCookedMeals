@@ -33,6 +33,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityName": "mealEntry",
       "otherEntityRelationshipName": "merchant",
       "relationshipName": "mealEntry",

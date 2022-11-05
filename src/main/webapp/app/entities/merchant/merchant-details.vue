@@ -34,6 +34,12 @@
           <dd>
             <span>{{ merchant.rating }}</span>
           </dd>
+          <dt>
+            <span>User</span>
+          </dt>
+          <dd>
+            {{ merchant.user ? merchant.user.id : '' }}
+          </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span> Back</span>

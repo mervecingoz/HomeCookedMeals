@@ -44,9 +44,6 @@ class CustomerResourceIT {
     private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NICK_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NICK_NAME = "BBBBBBBBBB";
-
     private static final String ENTITY_API_URL = "/api/customers";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -78,8 +75,7 @@ class CustomerResourceIT {
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .email(DEFAULT_EMAIL)
-            .phoneNumber(DEFAULT_PHONE_NUMBER)
-            .nickName(DEFAULT_NICK_NAME);
+            .phoneNumber(DEFAULT_PHONE_NUMBER);
         return customer;
     }
 
@@ -94,8 +90,7 @@ class CustomerResourceIT {
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER)
-            .nickName(UPDATED_NICK_NAME);
+            .phoneNumber(UPDATED_PHONE_NUMBER);
         return customer;
     }
 
@@ -127,7 +122,6 @@ class CustomerResourceIT {
         assertThat(testCustomer.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testCustomer.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testCustomer.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
-        assertThat(testCustomer.getNickName()).isEqualTo(DEFAULT_NICK_NAME);
     }
 
     @Test
@@ -169,8 +163,7 @@ class CustomerResourceIT {
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
-            .andExpect(jsonPath("$.[*].nickName").value(hasItem(DEFAULT_NICK_NAME)));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)));
     }
 
     @Test
@@ -188,8 +181,7 @@ class CustomerResourceIT {
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
-            .andExpect(jsonPath("$.nickName").value(DEFAULT_NICK_NAME));
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER));
     }
 
     @Test
@@ -211,12 +203,7 @@ class CustomerResourceIT {
         Customer updatedCustomer = customerRepository.findById(customer.getId()).get();
         // Disconnect from session so that the updates on updatedCustomer are not directly saved in db
         em.detach(updatedCustomer);
-        updatedCustomer
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER)
-            .nickName(UPDATED_NICK_NAME);
+        updatedCustomer.firstName(UPDATED_FIRST_NAME).lastName(UPDATED_LAST_NAME).email(UPDATED_EMAIL).phoneNumber(UPDATED_PHONE_NUMBER);
         CustomerDTO customerDTO = customerMapper.toDto(updatedCustomer);
 
         restCustomerMockMvc
@@ -236,7 +223,6 @@ class CustomerResourceIT {
         assertThat(testCustomer.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testCustomer.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCustomer.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
-        assertThat(testCustomer.getNickName()).isEqualTo(UPDATED_NICK_NAME);
     }
 
     @Test
@@ -323,7 +309,7 @@ class CustomerResourceIT {
         Customer partialUpdatedCustomer = new Customer();
         partialUpdatedCustomer.setId(customer.getId());
 
-        partialUpdatedCustomer.firstName(UPDATED_FIRST_NAME).nickName(UPDATED_NICK_NAME);
+        partialUpdatedCustomer.firstName(UPDATED_FIRST_NAME);
 
         restCustomerMockMvc
             .perform(
@@ -342,7 +328,6 @@ class CustomerResourceIT {
         assertThat(testCustomer.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testCustomer.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testCustomer.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
-        assertThat(testCustomer.getNickName()).isEqualTo(UPDATED_NICK_NAME);
     }
 
     @Test
@@ -361,8 +346,7 @@ class CustomerResourceIT {
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER)
-            .nickName(UPDATED_NICK_NAME);
+            .phoneNumber(UPDATED_PHONE_NUMBER);
 
         restCustomerMockMvc
             .perform(
@@ -381,7 +365,6 @@ class CustomerResourceIT {
         assertThat(testCustomer.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testCustomer.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCustomer.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
-        assertThat(testCustomer.getNickName()).isEqualTo(UPDATED_NICK_NAME);
     }
 
     @Test

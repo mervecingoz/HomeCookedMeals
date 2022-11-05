@@ -16,6 +16,13 @@
   "name": "Meal",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "mealEntry",
+      "otherEntityRelationshipName": "meal",
+      "relationshipName": "mealEntry",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }

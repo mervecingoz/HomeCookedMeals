@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new CustomerService();
-      elemDefault = new Customer(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Customer(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -85,7 +85,6 @@ describe('Service Tests', () => {
             lastName: 'BBBBBB',
             email: 'BBBBBB',
             phoneNumber: 'BBBBBB',
-            nickName: 'BBBBBB',
           },
           elemDefault
         );
@@ -114,7 +113,6 @@ describe('Service Tests', () => {
           {
             firstName: 'BBBBBB',
             email: 'BBBBBB',
-            nickName: 'BBBBBB',
           },
           new Customer()
         );
@@ -146,7 +144,6 @@ describe('Service Tests', () => {
             lastName: 'BBBBBB',
             email: 'BBBBBB',
             phoneNumber: 'BBBBBB',
-            nickName: 'BBBBBB',
           },
           elemDefault
         );

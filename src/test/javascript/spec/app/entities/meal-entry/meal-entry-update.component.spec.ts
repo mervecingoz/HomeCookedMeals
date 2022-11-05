@@ -12,11 +12,11 @@ import MealEntryUpdateComponent from '@/entities/meal-entry/meal-entry-update.vu
 import MealEntryClass from '@/entities/meal-entry/meal-entry-update.component';
 import MealEntryService from '@/entities/meal-entry/meal-entry.service';
 
-import MealService from '@/entities/meal/meal.service';
-
 import DeliveryService from '@/entities/delivery/delivery.service';
 
 import MerchantService from '@/entities/merchant/merchant.service';
+
+import MealService from '@/entities/meal/meal.service';
 import AlertService from '@/shared/alert/alert.service';
 
 const localVue = createLocalVue();
@@ -49,11 +49,6 @@ describe('Component Tests', () => {
           mealEntryService: () => mealEntryServiceStub,
           alertService: () => new AlertService(),
 
-          mealService: () =>
-            sinon.createStubInstance<MealService>(MealService, {
-              retrieve: sinon.stub().resolves({}),
-            } as any),
-
           deliveryService: () =>
             sinon.createStubInstance<DeliveryService>(DeliveryService, {
               retrieve: sinon.stub().resolves({}),
@@ -61,6 +56,11 @@ describe('Component Tests', () => {
 
           merchantService: () =>
             sinon.createStubInstance<MerchantService>(MerchantService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
+
+          mealService: () =>
+            sinon.createStubInstance<MealService>(MealService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
         },

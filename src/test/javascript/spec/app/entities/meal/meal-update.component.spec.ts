@@ -9,6 +9,7 @@ import MealUpdateComponent from '@/entities/meal/meal-update.vue';
 import MealClass from '@/entities/meal/meal-update.component';
 import MealService from '@/entities/meal/meal.service';
 
+import MealEntryService from '@/entities/meal-entry/meal-entry.service';
 import AlertService from '@/shared/alert/alert.service';
 
 const localVue = createLocalVue();
@@ -40,6 +41,11 @@ describe('Component Tests', () => {
         provide: {
           mealService: () => mealServiceStub,
           alertService: () => new AlertService(),
+
+          mealEntryService: () =>
+            sinon.createStubInstance<MealEntryService>(MealEntryService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
         },
       });
       comp = wrapper.vm;

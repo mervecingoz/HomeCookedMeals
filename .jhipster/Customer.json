@@ -20,10 +20,6 @@
     {
       "fieldName": "phoneNumber",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "nickName",
-      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -32,6 +28,12 @@
   "pagination": "no",
   "readOnly": false,
   "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
     {
       "otherEntityName": "customerAddress",
       "otherEntityRelationshipName": "customer",

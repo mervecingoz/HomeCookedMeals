@@ -23,7 +23,6 @@ entity Customer {
 	lastName String
 	email String
 	phoneNumber String
-    nickName String
 }
 
 entity Merchant {
@@ -44,10 +43,12 @@ relationship OneToMany {
     CustomerAddress to Delivery{customerAddress}
     Merchant to MealEntry{merchant}
     MealEntry to Delivery{mealEntry}
+    Meal to MealEntry{meal}
 }
 
 relationship OneToOne {
-	MealEntry{meal} to Meal
+    Merchant{user} to User
+    Customer{user} to User
 }
 
 

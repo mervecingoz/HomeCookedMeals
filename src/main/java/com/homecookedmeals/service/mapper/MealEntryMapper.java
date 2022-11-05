@@ -13,17 +13,17 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface MealEntryMapper extends EntityMapper<MealEntryDTO, MealEntry> {
-    @Mapping(target = "meal", source = "meal", qualifiedByName = "mealId")
     @Mapping(target = "merchant", source = "merchant", qualifiedByName = "merchantId")
+    @Mapping(target = "meal", source = "meal", qualifiedByName = "mealId")
     MealEntryDTO toDto(MealEntry s);
-
-    @Named("mealId")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    MealDTO toDtoMealId(Meal meal);
 
     @Named("merchantId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     MerchantDTO toDtoMerchantId(Merchant merchant);
+
+    @Named("mealId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    MealDTO toDtoMealId(Meal meal);
 }

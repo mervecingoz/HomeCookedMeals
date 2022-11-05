@@ -1,3 +1,4 @@
+import { IUser } from '@/shared/model/user.model';
 import { IMealEntry } from '@/shared/model/meal-entry.model';
 
 export interface IMerchant {
@@ -7,6 +8,7 @@ export interface IMerchant {
   email?: string | null;
   phoneNumber?: string | null;
   rating?: number | null;
+  user?: IUser | null;
   mealEntries?: IMealEntry[] | null;
 }
 
@@ -18,6 +20,7 @@ export class Merchant implements IMerchant {
     public email?: string | null,
     public phoneNumber?: string | null,
     public rating?: number | null,
+    public user?: IUser | null,
     public mealEntries?: IMealEntry[] | null
   ) {}
 }

@@ -35,7 +35,7 @@ public class CustomerAddress implements Serializable {
     private Set<Delivery> deliveries = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "customerAddresses" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "customerAddresses" }, allowSetters = true)
     private Customer customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
