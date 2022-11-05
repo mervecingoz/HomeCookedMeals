@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20221104223139",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "delivery",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CREATED,MEAL_REDY,PICKED_UP,DELIVERED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Delivery",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "customerAddress",
+      "otherEntityRelationshipName": "delivery",
+      "relationshipName": "customerAddress",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "mealEntry",
+      "otherEntityRelationshipName": "delivery",
+      "relationshipName": "mealEntry",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

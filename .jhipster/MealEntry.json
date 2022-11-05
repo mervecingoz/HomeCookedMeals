@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20221104223138",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "meal_entry",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "quota",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "remainingQuota",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MealEntry",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "meal",
+      "ownerSide": true,
+      "relationshipName": "meal",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "delivery",
+      "otherEntityRelationshipName": "mealEntry",
+      "relationshipName": "delivery",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "merchant",
+      "otherEntityRelationshipName": "mealEntry",
+      "relationshipName": "merchant",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

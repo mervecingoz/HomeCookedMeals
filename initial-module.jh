@@ -23,6 +23,7 @@ entity Customer {
 	lastName String
 	email String
 	phoneNumber String
+    nickName String
 }
 
 entity Merchant {
@@ -40,19 +41,14 @@ enum Status {
 
 relationship OneToMany {
 	Customer to CustomerAddress{customer}
+    CustomerAddress to Delivery{customerAddress}
+    Merchant to MealEntry{merchant}
+    MealEntry to Delivery{mealEntry}
 }
 
 relationship OneToOne {
-	Meal to MealEntry
-    Merchant to MealEntry
+	MealEntry{meal} to Meal
 }
-
-relationship OneToOne {
-    CustomerAddress to Delivery
-    MealEntry to Delivery
-}
-
-
 
 
 // Set pagination options
